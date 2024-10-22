@@ -46,18 +46,23 @@ public class PetsController {
     }
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path="/pets/{id}", method = RequestMethod.DELETE)
+
     public void deletePet(@PathVariable int id){
         petDao.deletePetById(id);
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/add-pet", method = RequestMethod.POST)
+
     public void addPet(@Valid @RequestBody Pets pet){
         petDao.addPet(pet);
     }
+
     @RequestMapping(path="/register-playdate", method = RequestMethod.POST)
     public void linkPetPlaydate(@Valid @RequestBody PlaydatePets playdatePets){
         petDao.linkPetPlaydate(playdatePets);
     }
+
     @RequestMapping(path = "/{playdateId}/pet", method = RequestMethod.GET)
     public List<Pets> getPetsByPlaydateId(@PathVariable int playdateId){
         return petDao.getPetsByPlaydateId(playdateId);

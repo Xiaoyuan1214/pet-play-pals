@@ -23,7 +23,7 @@ public class JdbcPetDao implements PetDao{
         pets.setId(results.getInt("pet_id"));
         pets.setName(results.getString("pet_name"));
         pets.setBreed(results.getString("breed"));
-        pets.setDateOfBirth(results.getDate("date_of_birth").toString());
+        pets.setDateOfBirth(results.getDate("date_of_birth").toLocalDate());
         pets.setGender(results.getString("gender"));
         pets.setCustomerId(results.getInt("customer_id"));
         pets.setPetSize(results.getString("pet_size"));
@@ -109,7 +109,7 @@ public class JdbcPetDao implements PetDao{
         if(id<=0){
             throw new IllegalArgumentException("ID must be greater than zero.");
         }
-        String sql = "DELETE FROM pets WHERE id = ?";
+        String sql = "DELETE FROM pets WHERE pet_id = ?";
         try{
             jdbcTemplate.update(sql,id);
         }catch (CannotGetJdbcConnectionException e) {

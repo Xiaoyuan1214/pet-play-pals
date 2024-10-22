@@ -49,10 +49,10 @@
   <div class="control">
     <div class="select">
       <select>
-        <option>Small</option>
-        <option>Medium</option>
-        <option>Large</option>
-        <option>Extra Large</option>
+        <option>small</option>
+        <option>medium</option>
+        <option>large</option>
+        <option>extra large</option>
       </select>
     </div>
   </div>
@@ -76,9 +76,9 @@
   <div class="control">
     <div class="select">
       <select>
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
+        <option>low</option>
+        <option>medium</option>
+        <option>high</option>
       </select>
     </div>
   </div>
@@ -167,11 +167,10 @@ export default {
                     }
                 );
             }else{
-//update pet
-                petService.updatePet(this.newPet).then(
+                petService.updatePet(this.newPet.id, this.newPet).then(
                     (response) => {
                         if(response.status === 200){
-                            this.$store.commit(
+                            this.$store.commit( 
                                 'SET_NOTIFICATION',
                                 {
                                     message: 'The card was updated.',
@@ -179,7 +178,7 @@ export default {
                                 }
                             );
                             //redirect to pets page
-                            this.$router.push( {name: 'pets', params: { customerId: this.newPet.customerId } });
+                        this.$router.push( {name: 'pets', params: { customerId: this.newPet.customerId } });
                         }
                     }
                 ).catch(

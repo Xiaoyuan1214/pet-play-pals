@@ -13,14 +13,7 @@
             <p><strong>Spay or Neuter: </strong>{{pets.isSpayNeuter}}</p>
             <p><strong>Energy Level: </strong>{{pets.energyLevel}}</p>
         </div>
-        <div class="buttons">
-        <router-link to="/pets/add-pet">
-             <button class="button is-info">Add</button>
-        </router-link>
-         <button class="button is-success">Edit</button>
-         <button class="button is-warning">Delete</button>
-        </div>
-    </div>
+
 </template>
 
 <script>
@@ -28,9 +21,10 @@ import petService from '../services/petService'
 export default {
     data(){
         return{
-            pets: []
+            pets: [],
         }
     },
+    props:['pet'],
     created(){
         petService.getPetById(this.$route.params.id).then(
             (response) => {
@@ -42,6 +36,11 @@ export default {
             }
         );
     },
+    methods:{
+       
+
+
+    }
 
 }
 </script>
